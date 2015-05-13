@@ -35,6 +35,13 @@ describe('GET /puzzles/isleapyear/{year}', function(){
       done();
     });
   });
+  it('should output false for 200 being a leap year', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isleapyear/200', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(false);
+      done();
+    });
+  });
   it('should output true for 3004 being a leap year', function(done){
     server.inject({method: 'GET', url: '/puzzles/isleapyear/3004', credentials: {_id: 3}}, function(response){
       expect(response.statusCode).to.equal(200);
@@ -46,6 +53,13 @@ describe('GET /puzzles/isleapyear/{year}', function(){
     server.inject({method: 'GET', url: '/puzzles/isleapyear/4000', credentials: {_id: 3}}, function(response){
       expect(response.statusCode).to.equal(200);
       expect(response.result.value).to.equal(true);
+      done();
+    });
+  });
+  it('should output false for 4003 being a leap year', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isleapyear/4003', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(false);
       done();
     });
   });

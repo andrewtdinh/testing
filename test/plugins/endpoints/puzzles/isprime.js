@@ -49,6 +49,20 @@ describe('GET /puzzles/isprime/{num}', function(){
       done();
     });
   });
+  it('should return true after evaluating 2', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/2', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(true);
+      done();
+    });
+  });
+  it('should return false after evaluating 10000', function(done){
+    server.inject({method: 'GET', url: '/puzzles/isprime/10000', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(false);
+      done();
+    });
+  });
   it('should return false after evaluating a negative number', function(done){
     server.inject({method: 'GET', url: '/puzzles/isprime/-11', credentials: {_id: 3}}, function(response){
       expect(response.statusCode).to.equal(200);

@@ -35,6 +35,13 @@ describe('GET /puzzles/gcd/{num1}/{num2}', function(){
       done();
     });
   });
+  it('should return the greatest common denominator of two integers', function(done){
+    server.inject({method: 'GET', url: '/puzzles/gcd/32/98', credentials: {_id: 3}}, function(response){
+      expect(response.statusCode).to.equal(200);
+      expect(response.result.value).to.equal(2);
+      done();
+    });
+  });
   it('should throw an error on non-integers', function(done){
     server.inject({method: 'GET', url: '/puzzles/gcd/@/105', credentials: {_id: 3}}, function(response){
       expect(response.statusCode).to.equal(400);
